@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  distribution-center-api:
+    container_name: "distribution-center-api"
+    build:
+      context: ..
+      dockerfile: .docker/distribution-center-api.dockerfile
+    ports:
+      - "8001:8001"
+  order-api:
+    container_name: "order-api"
+    build:
+      context: ..
+      dockerfile: .docker/order-api.dockerfile
+    environment:
+      - PORT=8080
+      - DISTRIBUTION_CENTER_URL=http://distribution-center-api:8001/distribuitioncenters
+
+      - MONGO_URI=mongodb://mongodb:27017
+      - MONGO_DB_NAME=orderdb
+    ports:
+      - "8080:8080"
+
+  mongodb:
+    image: mongo:6
+    container_name: mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: orderdb
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:

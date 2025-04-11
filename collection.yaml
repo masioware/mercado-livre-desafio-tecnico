@@ -1,0 +1,163 @@
+type: collection.insomnia.rest/5.0
+name: Mercado Livre
+meta:
+  id: wrk_023fd7b464d3496b9347369d613773f0
+  created: 1744250534886
+  modified: 1744250534886
+collection:
+  - name: Order API
+    meta:
+      id: fld_aa7eb55eedb149c196facc7bc00f2eef
+      created: 1744250551533
+      modified: 1744250655318
+      sortKey: -1744250551533
+    children:
+      - url: localhost:8080/api/v1/health-check
+        name: Heath Check
+        meta:
+          id: req_d3060e3040bc419f9907917cb9f3bae9
+          created: 1744250555886
+          modified: 1744250629511
+          isPrivate: false
+          sortKey: -1744250555886
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/api/v1/order
+        name: Order
+        meta:
+          id: req_e442ff91d47b463db783f50c645276d6
+          created: 1744250656873
+          modified: 1744303936392
+          isPrivate: false
+          sortKey: -1744250555786
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "items": [
+            		{
+                  "id": {% faker 'randomInt' %},
+                  "name": "{% faker 'randomLoremSlug' %}",
+                  "price": {% faker 'randomPrice' %}
+                },
+                {
+                  "id": {% faker 'randomInt' %},
+                  "name": "{% faker 'randomLoremSlug' %}",
+                  "price": {% faker 'randomPrice' %}
+                },
+            		{
+                  "id": {% faker 'randomInt' %},
+                  "name": "{% faker 'randomLoremSlug' %}",
+                  "price": {% faker 'randomPrice' %}
+                },
+            			{
+                  "id": {% faker 'randomInt' %},
+                  "name": "{% faker 'randomLoremSlug' %}",
+                  "price": {% faker 'randomPrice' %}
+                },
+            				{
+                  "id": {% faker 'randomInt' %},
+                  "name": "{% faker 'randomLoremSlug' %}",
+                  "price": {% faker 'randomPrice' %}
+                },
+            				{
+                  "id": {% faker 'randomInt' %},
+                  "name": "{% faker 'randomLoremSlug' %}",
+                  "price": {% faker 'randomPrice' %}
+                },
+            				{
+                  "id": {% faker 'randomInt' %},
+                  "name": "{% faker 'randomLoremSlug' %}",
+                  "price": {% faker 'randomPrice' %}
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8080/api/v1/order/67f8717595ea8b62288e5e88
+        name: Order
+        meta:
+          id: req_6b6bf53cd57941dd996bb1918609d050
+          created: 1744332176375
+          modified: 1744335299893
+          isPrivate: false
+          sortKey: -1744250555736
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: "[FAKE] Distribution Center API"
+    meta:
+      id: fld_2eb6e09928b549a0ae34d9c6dc1d75ab
+      created: 1744252193267
+      modified: 1744252193267
+      sortKey: -1744252193268
+    children:
+      - url: localhost:8001/distribuitioncenters
+        name: Distribution Center by Item
+        meta:
+          id: req_53f5b4360b224685b4891ab29b1b375f
+          created: 1744252224149
+          modified: 1744322302061
+          isPrivate: false
+          sortKey: -1744252312176
+        method: GET
+        parameters:
+          - id: pair_f7ec5a97d4b3445b93cd17748b891aaa
+            name: itemId
+            value: "123"
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_93aa15fcebfed45478488529884de38cfb46921a
+    created: 1744250534891
+    modified: 1744250534891
+environments:
+  name: Base Environment
+  meta:
+    id: env_93aa15fcebfed45478488529884de38cfb46921a
+    created: 1744250534889
+    modified: 1744250534889
+    isPrivate: false

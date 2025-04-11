@@ -1,0 +1,94 @@
+definitions:
+  github_com_masioware_mercado-livre-desafio-tecnico_order-api_internal_model.Item:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      price:
+        type: number
+    type: object
+  github_com_masioware_mercado-livre-desafio-tecnico_order-api_internal_model.Order:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/github_com_masioware_mercado-livre-desafio-tecnico_order-api_internal_model.OrderItem'
+        type: array
+    type: object
+  github_com_masioware_mercado-livre-desafio-tecnico_order-api_internal_model.OrderItem:
+    properties:
+      distribution_center:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      price:
+        type: number
+    type: object
+  github_com_masioware_mercado-livre-desafio-tecnico_order-api_internal_model.OrderRequest:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/github_com_masioware_mercado-livre-desafio-tecnico_order-api_internal_model.Item'
+        type: array
+    type: object
+  github_com_masioware_mercado-livre-desafio-tecnico_order-api_internal_model.OrderResponse:
+    properties:
+      order:
+        $ref: '#/definitions/github_com_masioware_mercado-livre-desafio-tecnico_order-api_internal_model.Order'
+    type: object
+info:
+  contact: {}
+paths:
+  /health-check:
+    get:
+      description: Endpoint para checagem de saúde da API
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Verifica se o serviço está funcionando
+      tags:
+      - health
+  /order:
+    post:
+      consumes:
+      - application/json
+      description: Recebe uma lista de itens e retorna os centros de distribuição
+        que irão atendê-los
+      parameters:
+      - description: Dados do pedido
+        in: body
+        name: order
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_masioware_mercado-livre-desafio-tecnico_order-api_internal_model.OrderRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_masioware_mercado-livre-desafio-tecnico_order-api_internal_model.OrderResponse'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Processa um pedido e aloca centros de distribuição
+      tags:
+      - order
+swagger: "2.0"
