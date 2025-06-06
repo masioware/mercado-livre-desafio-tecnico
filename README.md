@@ -197,8 +197,3 @@ make test
 ## 🧠 Lógica de agrupamento de Item/CD
 
 Foi construído um algoritmo de complexidade O(n \* m) — linear em relação ao número de itens do pedido (n) e ao número de centros de distribuição (m) — para resolver o problema de Set Cover. Esse algoritmo percorre todos os itens do pedido e avalia, para cada item, os centros de distribuição disponíveis, garantindo uma alocação eficiente e direta, adequada para cenários em que simplicidade e performance prática são prioridades.
-
-## 📬 Contato
-
-email: marcioedumartinez@gmail.com
-celular: (11) 94256-2000
